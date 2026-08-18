@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce_mobile_app/screen/splash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
 void main() {
   runApp(
@@ -12,6 +13,14 @@ void main() {
     ),
   );
 }
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.trackpad,
+  };
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,8 +29,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to our store. Enjoy you shopping',
+      scrollBehavior: MyCustomScrollBehavior(),
+      title: 'Welcome to GenStore.',
       home: SplashScreen(),
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+      ),
     );
   }
 }
