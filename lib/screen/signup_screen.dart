@@ -1,35 +1,50 @@
 import 'package:flutter/material.dart';
-import 'signup_screen.dart';
-import 'onboarding_screen.dart';
+import 'login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  void _handleLogin() {
+  void _handleSignup() {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const OnboardingScreen(),
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Account created successfully! Please log in.'),
+          backgroundColor: Color(0xFF2D2D2D),
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 2),
         ),
       );
+
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
+      }
     }
   }
 
@@ -37,17 +52,33 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF1E1E1E), size: 20),
+          onPressed: () {
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            } else {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            }
+          },
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 8.0),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
                 const Text(
-                  'Log into\nyour account',
+                  'Create\nyour account',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -56,7 +87,51 @@ class _LoginScreenState extends State<LoginScreen> {
                     letterSpacing: -0.5,
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 32),
+
+                // Name Field
+                const Text(
+                  'Full Name',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF333333),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _nameController,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your full name',
+                    hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+                    filled: true,
+                    fillColor: Colors.grey.shade50,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFF1E1E1E), width: 1.5),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter your name';
+                    }
+                    if (value.trim().length < 2) {
+                      return 'Name must be at least 2 characters';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 18),
 
                 // Email Field
                 const Text(
@@ -101,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 18),
 
                 // Password Field
                 const Text(
@@ -157,14 +232,70 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 18),
 
-                // Log In Button (Dark pill-shaped)
+                // Confirm Password Field
+                const Text(
+                  'Confirm Password',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF333333),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _confirmPasswordController,
+                  obscureText: _obscureConfirmPassword,
+                  decoration: InputDecoration(
+                    hintText: 'Re-enter your password',
+                    hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+                    filled: true,
+                    fillColor: Colors.grey.shade50,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureConfirmPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        color: Colors.grey.shade600,
+                        size: 20,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureConfirmPassword = !_obscureConfirmPassword;
+                        });
+                      },
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFF1E1E1E), width: 1.5),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != _passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 32),
+
+                // Sign Up Button (Dark pill-shaped)
                 SizedBox(
                   width: double.infinity,
                   height: 54,
                   child: ElevatedButton(
-                    onPressed: _handleLogin,
+                    onPressed: _handleSignup,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF2D2D2D),
                       foregroundColor: Colors.white,
@@ -174,7 +305,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     child: const Text(
-                      'LOG IN',
+                      'SIGN UP',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -183,55 +314,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 28),
 
-                // Social Login Divider
-                Row(
-                  children: [
-                    Expanded(child: Divider(color: Colors.grey.shade300)),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                      child: Text(
-                        'or log in with',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.grey.shade600,
-                        ),
-                      ),
-                    ),
-                    Expanded(child: Divider(color: Colors.grey.shade300)),
-                  ],
-                ),
-                const SizedBox(height: 24),
-
-                // Social Login Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _socialButton(
-                      onTap: () {},
-                      icon: const Icon(Icons.g_mobiledata, size: 32, color: Colors.redAccent),
-                    ),
-                    const SizedBox(width: 20),
-                    _socialButton(
-                      onTap: () {},
-                      icon: const Icon(Icons.apple, size: 26, color: Colors.black),
-                    ),
-                    const SizedBox(width: 20),
-                    _socialButton(
-                      onTap: () {},
-                      icon: const Icon(Icons.facebook, size: 26, color: Color(0xFF1877F2)),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-
-                // Don't have an account? Sign Up
+                // Already have account? Log In
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account? ",
+                      'Already have account? ',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey.shade600,
@@ -239,15 +329,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignupScreen(),
-                          ),
-                        );
+                        if (Navigator.canPop(context)) {
+                          Navigator.pop(context);
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                          );
+                        }
                       },
                       child: const Text(
-                        'Sign Up',
+                        'Log In',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -258,36 +350,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 24),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _socialButton({required VoidCallback onTap, required Widget icon}) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(50),
-      child: Container(
-        width: 54,
-        height: 54,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.grey.shade300, width: 1.2),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.03),
-              blurRadius: 6,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        alignment: Alignment.center,
-        child: icon,
       ),
     );
   }
