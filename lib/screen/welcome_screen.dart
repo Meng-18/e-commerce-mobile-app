@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   const Spacer(),
                   const Text(
-                    'Welcome to GemStore!',
+                    'Welcome to GenStore!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 28,
