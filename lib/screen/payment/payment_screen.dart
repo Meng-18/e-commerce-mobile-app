@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:e_commerce_mobile_app/screen/home_screen.dart';
+import 'package:e_commerce_mobile_app/screen/home/home_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
   final double totalAmount;

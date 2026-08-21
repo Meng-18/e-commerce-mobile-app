@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:e_commerce_mobile_app/screen/products_screen.dart';
+import 'package:e_commerce_mobile_app/screen/product/products_screen.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});

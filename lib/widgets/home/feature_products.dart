@@ -1,5 +1,5 @@
-import 'package:e_commerce_mobile_app/screen/model/product.dart';
-import 'package:e_commerce_mobile_app/screen/product_detail_screen.dart'; // Import product detail screen
+import 'package:e_commerce_mobile_app/models/product.dart';
+import 'package:e_commerce_mobile_app/screen/product/product_detail_screen.dart'; // Import product detail screen
 import 'package:flutter/material.dart';
 
 class FeatureProducts extends StatelessWidget {

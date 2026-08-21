@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/home_header.dart';
-import '../widgets/menu_sidebar.dart';
-import '../widgets/categories.dart';
-import '../widgets/fashion_banner.dart';
-import '../widgets/feature_products.dart';
-import '../widgets/new_collection.dart';
-import '../widgets/recommended.dart';
-import '../widgets/top_collection.dart';
-import '../widgets/small_collections.dart';
-import '../widgets/bottom_navigation.dart';
+import '../../widgets/home/home_header.dart';
+import '../../widgets/navigation/menu_sidebar.dart';
+import '../../widgets/home/categories.dart';
+import '../../widgets/home/fashion_banner.dart';
+import '../../widgets/home/feature_products.dart';
+import '../../widgets/home/new_collection.dart';
+import '../../widgets/home/recommended.dart';
+import '../../widgets/home/top_collection.dart';
+import '../../widgets/home/small_collections.dart';
+import '../../widgets/navigation/bottom_navigation.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});

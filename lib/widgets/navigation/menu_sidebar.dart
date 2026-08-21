@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 // Import your existing screen files here
-import '../screen/home_screen.dart';
-import '../screen/discover_screen.dart';
-import '../screen/my_order_screen.dart';
-import '../screen/profile_screen.dart';
-import '../screen/chat_support_screen.dart';
-import '../screen/settings_screen.dart';
-import '../screen/about_us_screen.dart';
+import '../../screen/home/home_screen.dart';
+import '../../screen/home/discover_screen.dart';
+import '../../screen/order/my_order_screen.dart';
+import '../../screen/profile/profile_screen.dart';
+import '../../screen/support/chat_support_screen.dart';
+import '../../screen/profile/settings_screen.dart';
+import '../../screen/support/about_us_screen.dart';
 
 class MenuSidebar extends StatelessWidget {
   final String selectedMenu;

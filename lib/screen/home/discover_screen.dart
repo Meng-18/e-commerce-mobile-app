@@ -1,9 +1,9 @@
-import 'package:e_commerce_mobile_app/widgets/filter_button.dart';
+import 'package:e_commerce_mobile_app/widgets/product/filter_button.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/home_header.dart';
-import '../widgets/menu_sidebar.dart';
-import '../widgets/bottom_navigation.dart';
+import '../../widgets/home/home_header.dart';
+import '../../widgets/navigation/menu_sidebar.dart';
+import '../../widgets/navigation/bottom_navigation.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});

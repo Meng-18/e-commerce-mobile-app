@@ -1,5 +1,5 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:e_commerce_mobile_app/screen/splash_screen.dart';
+import 'package:e_commerce_mobile_app/screen/splash_screen/splash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';

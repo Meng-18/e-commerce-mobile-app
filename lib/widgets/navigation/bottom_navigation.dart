@@ -1,10 +1,10 @@
-import 'package:e_commerce_mobile_app/screen/cart_screen.dart';
+import 'package:e_commerce_mobile_app/screen/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../screen/home_screen.dart';
-import '../screen/discover_screen.dart';
-import '../screen/my_order_screen.dart';
-import '../screen/profile_screen.dart';
+import '../../screen/home/home_screen.dart';
+import '../../screen/home/discover_screen.dart';
+import '../../screen/order/my_order_screen.dart';
+import '../../screen/profile/profile_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
   final int selectedIndex;

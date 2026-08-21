@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/bottom_navigation.dart';
-import '../widgets/menu_sidebar.dart';
-import 'notification_screen.dart';
+import '../../widgets/navigation/bottom_navigation.dart';
+import '../../widgets/navigation/menu_sidebar.dart';
+import '../notification/notification_screen.dart';
 import 'order_detail_screen.dart';
 
 class MyOrderScreen extends StatefulWidget {

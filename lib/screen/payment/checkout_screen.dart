@@ -1,4 +1,4 @@
-import 'package:e_commerce_mobile_app/screen/payment_screen.dart';
+import 'package:e_commerce_mobile_app/screen/payment/payment_screen.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutScreen extends StatefulWidget {

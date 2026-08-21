@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/bottom_navigation.dart';
-import '../widgets/menu_sidebar.dart';
-import 'notification_screen.dart';
-import 'package:e_commerce_mobile_app/screen/personal_information_screen.dart';
-import 'package:e_commerce_mobile_app/screen/my_address_screen.dart';
-import 'package:e_commerce_mobile_app/screen/password_screen.dart';
-import 'package:e_commerce_mobile_app/screen/payment_methods_screen.dart';
-import 'package:e_commerce_mobile_app/screen/settings_screen.dart';
-import 'package:e_commerce_mobile_app/screen/help_support_screen.dart';
-import 'package:e_commerce_mobile_app/screen/about_us_screen.dart';
+import '../../widgets/navigation/bottom_navigation.dart';
+import '../../widgets/navigation/menu_sidebar.dart';
+import '../notification/notification_screen.dart';
+import 'package:e_commerce_mobile_app/screen/profile/personal_information_screen.dart';
+import 'package:e_commerce_mobile_app/screen/profile/my_address_screen.dart';
+import 'package:e_commerce_mobile_app/screen/auth/password_screen.dart';
+import 'package:e_commerce_mobile_app/screen/payment/payment_methods_screen.dart';
+import 'package:e_commerce_mobile_app/screen/profile/settings_screen.dart';
+import 'package:e_commerce_mobile_app/screen/support/help_support_screen.dart';
+import 'package:e_commerce_mobile_app/screen/support/about_us_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

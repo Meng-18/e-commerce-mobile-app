@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/home_header.dart';
-import '../widgets/menu_sidebar.dart';
-import '../widgets/bottom_navigation.dart';
-import 'checkout_screen.dart';
+import '../../widgets/home/home_header.dart';
+import '../../widgets/navigation/menu_sidebar.dart';
+import '../../widgets/navigation/bottom_navigation.dart';
+import '../payment/checkout_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
